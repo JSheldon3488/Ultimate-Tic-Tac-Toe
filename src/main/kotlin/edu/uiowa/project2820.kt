@@ -7,4 +7,5 @@ package edu.uiowa
 fun main(args: Array<String>) {
     // you can do some testing here, though unit testing needs to be
     // in the src/test/java directory
+    println("This is a test commit")
 }
