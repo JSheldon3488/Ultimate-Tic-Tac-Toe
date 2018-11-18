@@ -7,7 +7,7 @@ import org.junit.Assert.*
 class TicTacToeTest {
     @Test
     fun checkInitialize() {
-        val TTT = TicTacToe()
+        val TTT = TTTengine()
         assertEquals("X", TTT.player1)
         assertEquals("O", TTT.player2)
         assertEquals("X", TTT.currentPlayer)
@@ -17,7 +17,7 @@ class TicTacToeTest {
     }
     @Test
     fun makeMove() {
-        val TTT = TicTacToe()
+        val TTT = TTTengine()
         TTT.makeMove(0,0)
         assertEquals(TTT.board[0][0], "X")
         TTT.makeMove(1,1)
@@ -27,7 +27,7 @@ class TicTacToeTest {
     }
     @Test
     fun checkHorizontalWinner() {
-        val TTTr1 = TicTacToe()
+        val TTTr1 = TTTengine()
         TTTr1.makeMove(0,0)
         TTTr1.makeMove(1,1)
         TTTr1.makeMove(0,1)
@@ -38,7 +38,7 @@ class TicTacToeTest {
     }
     @Test
     fun checkVerticalWinner() {
-        val TTT = TicTacToe()
+        val TTT = TTTengine()
         TTT.makeMove(1,1)
         TTT.makeMove(0,0)
         TTT.makeMove(1,2)
@@ -50,7 +50,7 @@ class TicTacToeTest {
     }
     @Test
     fun checkDiagonalLRWinner() {
-        val TTT = TicTacToe()
+        val TTT = TTTengine()
         TTT.makeMove(0,0)
         TTT.makeMove(0,1)
         TTT.makeMove(1,1)
@@ -61,7 +61,7 @@ class TicTacToeTest {
     }
     @Test
     fun checkDiagonalRLWinner() {
-        val TTT = TicTacToe()
+        val TTT = TTTengine()
         TTT.makeMove(0,2)
         TTT.makeMove(0,1)
         TTT.makeMove(1,1)
@@ -72,7 +72,7 @@ class TicTacToeTest {
     }
     @Test
     fun checkDraw() {
-        val TTT = TicTacToe()
+        val TTT = TTTengine()
         TTT.makeMove(0,0)
         TTT.makeMove(1,1)
         TTT.makeMove(0,1)
