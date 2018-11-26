@@ -5,6 +5,7 @@ import org.junit.Test
 import org.junit.Assert.*
 ///Still need to redo tests.
 ///Also messed up last commits message so doing another one.
+//This is a test push for Laptop
 
 class SingleGameTTTtest {
     @Test
@@ -84,7 +85,7 @@ class SingleGameTTTtest {
         TTT.makeMove(1,2)
         TTT.makeMove(2,2)
         TTT.makeMove(2,1)
-        assertEquals(TTT.winner, "Draw")
+        assertEquals("Draw", TTT.winner)
         assertEquals(TTT.gameOver, true)
     }
 }

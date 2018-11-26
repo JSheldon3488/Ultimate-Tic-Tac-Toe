@@ -18,6 +18,7 @@ class TTTengine {
             if (board[row][column] == "E") {
                 //Make move and check for winner
                 board[row][column] = currentPlayer
+                moves++
                 checkForWinner()
                 //Switch player turn
                 if (currentPlayer == player1) {
