@@ -8,17 +8,21 @@ import javafx.scene.paint.Color
 import javafx.scene.shape.Line
 import javafx.util.Duration
 
-class TTTboard(val engine : TTTengine) : Pane() {
+class TTTboard(val engine : TTTengine, val ultimateBoard: UltimateBoard) : Pane() {
     val window = Pane()
-    val wide = 600.0
-    val high = 600.0
+    val wide = 300.0
+    val high = 300.0
+    var boardRow = 0
+    var boardColumn = 0
+
     init {
         //Setup the main window
         window.setPrefSize(wide, high)
+        window.style = "-fx-border-color: black; -fx-border-width: 3;"
         //Create the TicTacToe squares for the window and initialize board
         for (i in 0..2) {
             for (j in 0..2) {
-                val square = TTTSquare(engine, this)
+                val square = TTTSquare(this, ultimateBoard)
                 square.row = i
                 square.column = j
                 square.translateX = j * wide / 3
@@ -26,6 +30,23 @@ class TTTboard(val engine : TTTengine) : Pane() {
                 window.children.add(square)
         } }
     }
+
+    fun disable(){
+        for (square in window.children){
+            square.isDisable = true
+            window.style = "-fx-border-color: black; -fx-border-width: 3; -fx-background-color: lightgrey     "
+        }
+    }
+    fun enable(){
+        for (square in window.children){
+            square.isDisable = false
+            window.style = "-fx-border-color: black; -fx-border-width: 3; -fx-background-color: white"
+
+        }
+    }
+
+
+
 
     fun playWinAnimation(start: Pair<Int, Int>, end: Pair<Int, Int>) {
         //Create a line and add it to the children on the window so it can be used
@@ -35,10 +56,10 @@ class TTTboard(val engine : TTTengine) : Pane() {
         line.endX = start.second.toDouble() * wide / 3 + wide / 3 * 0.5
         line.endY = start.first.toDouble() * high / 3 + high / 3 * 0.5
         line.strokeWidth = 4.0
-        if (engine.winner == engine.player1) {
+        if (engine.winner == ultimateBoard.ultimateEngine.player1) {
             line.stroke = Color.GREEN
         }
-        if (engine.winner == engine.player2) {
+        if (engine.winner == ultimateBoard.ultimateEngine.player2) {
             line.stroke = Color.RED
         }
         window.children.add(line)

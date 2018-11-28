@@ -4,28 +4,21 @@ class TTTengine {
     //Data Structure and class properties we need to play TicTacToe
     var board = Array<Array<String>>(3) { arrayOf<String>("E", "E", "E") }
     var winningCombo = arrayListOf<Pair<Int,Int>>()
-    val player1 = "X"
-    val player2 = "O"
-    var currentPlayer = player1
     var gameOver = false
     var winner = "Nobody"
     var moves = 0
 
+//Could refactor Make move into smaller chunks
     //Methods needed to play TicTacToe
-    fun makeMove(row: Int, column: Int) : Boolean {
+    fun makeMove(row: Int, column: Int, player : String) : Boolean {
         if (!gameOver) {
             //Make sure no one is already in this space
             if (board[row][column] == "E") {
                 //Make move and check for winner
-                board[row][column] = currentPlayer
+                board[row][column] = player
                 moves++
-                checkForWinner()
-                //Switch player turn
-                if (currentPlayer == player1) {
-                    currentPlayer = player2
-                } else {
-                    currentPlayer = player1
-                }
+                checkForWinner(player)
+//Need to do something different on draws
                 //Check for Draw
                 if (moves == 9 && winner == "Nobody") {
                     winner = "Draw"
@@ -39,13 +32,13 @@ class TTTengine {
         return false
     }
 
-    fun checkForWinner() {
+    fun checkForWinner(player : String) {
         //Check Horizontal Winners
         for (row in 0..2) {
             if (board[row][0] != "E") {
                 if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])) {
                     gameOver = true
-                    winner = currentPlayer
+                    winner = player
                     //Save winning combo for animation purposes
                     winningCombo.add(Pair(row, 0))
                     winningCombo.add(Pair(row, 1))
@@ -57,7 +50,7 @@ class TTTengine {
             if (board[0][column] != "E") {
                 if (board[0][column].equals(board[1][column]) && board[1][column].equals(board[2][column])) {
                     gameOver = true
-                    winner = currentPlayer
+                    winner = player
                     //Save winning combo for animation purposes
                     winningCombo.add(Pair(0, column))
                     winningCombo.add(Pair(1, column))
@@ -68,7 +61,7 @@ class TTTengine {
         if (board[0][0] != "E") {
             if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
                 gameOver = true
-                winner = currentPlayer
+                winner = player
                 //Save winning combo for animation purposes
                 winningCombo.add(Pair(0, 0))
                 winningCombo.add(Pair(1, 1))
@@ -78,7 +71,7 @@ class TTTengine {
         if (board[2][0] != "E") {
             if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])) {
                 gameOver = true
-                winner = currentPlayer
+                winner = player
                 //Save winning combo for animation purposes
                 winningCombo.add(Pair(2, 0))
                 winningCombo.add(Pair(1, 1))

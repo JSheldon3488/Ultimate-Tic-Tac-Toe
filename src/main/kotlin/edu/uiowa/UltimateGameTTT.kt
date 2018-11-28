@@ -4,14 +4,13 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 
-
-class TTTapp: Application(){
+class UltimateTTTapp: Application(){
     override fun start(primaryStage: Stage) {
-        primaryStage.scene = Scene(TTTboard(TTTengine()).window)
+        primaryStage.scene = Scene(UltimateBoard(UltimateEngine()).window)
         primaryStage.show()
     }
 }
 
 fun main(args: Array<String>) {
-    Application.launch(TTTapp::class.java)
+    Application.launch(UltimateTTTapp::class.java)
 }
