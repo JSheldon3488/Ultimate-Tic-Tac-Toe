@@ -26,20 +26,38 @@ class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPa
 
     //What needs to happen from the views and engine perspective on clicks
     fun click() {
-        if (board.engine.makeMove(row, column, ultimateBoard.ultimateEngine.currentPlayer)) {
-            //The player will be changed in make move so use opposite
-            if (ultimateBoard.ultimateEngine.currentPlayer == ultimateBoard.ultimateEngine.player1) {
-                textBox.fill = Color.GREEN
-                textBox.text = ultimateBoard.ultimateEngine.player1
-            } else {
-                textBox.fill = Color.RED
-                textBox.text = ultimateBoard.ultimateEngine.player2
+        if (board.engine.executeTurn(row, column, ultimateBoard.ultimateEngine.currentPlayer)) {
+            if (ultimateBoard.ultimateEngine.currentPlayer == ultimateBoard.ultimateEngine.player1)
+                fillPlayer1()
+            else
+                fillPlayer2()
+
+            //Check if Draw
+            if (ultimateBoard.ultimateEngine.checkForDraw()) {
+                ultimateBoard.endMacroGame()
             }
-            ultimateBoard.ultimateEngine.makeMove()
-            ultimateBoard.setState(row,column)
-            if (board.engine.gameOver){
-                board.playWinAnimation(board.engine.winningCombo[0], board.engine.winningCombo[2])
+
+            if (board.engine.gameOver) {
+                board.endMicroGame()
+            }
+            //Get Ready for Next Turn
+            if (ultimateBoard.ultimateEngine.gameOver) {
+                ultimateBoard.endMacroGame()
+            }
+            else{
+                ultimateBoard.ultimateEngine.changePlayer()
+                ultimateBoard.setState(row, column)
             }
         }
     }
+
+    fun fillPlayer1() {
+        textBox.fill = Color.GREEN
+        textBox.text = ultimateBoard.ultimateEngine.player1
+    }
+    fun fillPlayer2(){
+        textBox.fill = Color.RED
+        textBox.text = ultimateBoard.ultimateEngine.player2
+    }
+
 }

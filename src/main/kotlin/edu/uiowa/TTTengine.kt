@@ -10,28 +10,29 @@ class TTTengine {
 
 //Could refactor Make move into smaller chunks
     //Methods needed to play TicTacToe
-    fun makeMove(row: Int, column: Int, player : String) : Boolean {
+    fun executeTurn(row: Int, column: Int, player : String) : Boolean {
         if (!gameOver) {
             //Make sure no one is already in this space
             if (board[row][column] == "E") {
-                //Make move and check for winner
                 board[row][column] = player
                 moves++
                 checkForWinner(player)
-//Need to do something different on draws
-                //Check for Draw
-                if (moves == 9 && winner == "Nobody") {
-                    winner = "Draw"
-                    gameOver = true
-                }
-                //Move was successfully made
+                checkForDraw()
+                //Turn was successfully made
                 return true
             }
         }
-        //Move was not made
+        //Turn was not made
         return false
     }
 
+    fun checkForDraw(){
+        if (moves == 9 && winner == "Nobody") {
+            winner = "Draw"
+            gameOver = true
+        }
+    }
+    //Refacto and change way winner is assigned so doesnt have to pass in player
     fun checkForWinner(player : String) {
         //Check Horizontal Winners
         for (row in 0..2) {

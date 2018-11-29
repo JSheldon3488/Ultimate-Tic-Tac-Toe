@@ -20,72 +20,72 @@ class SingleGameTTTtest {
         assertEquals(0, TTT.moves)
     }
     @Test
-    fun makeMove() {
+    fun executeTurn() {
         val TTT = TTTengine()
-        TTT.makeMove(0,0)
+        TTT.executeTurn(0,0)
         assertEquals(TTT.board[0][0], "X")
-        TTT.makeMove(1,1)
+        TTT.executeTurn(1,1)
         assertEquals(TTT.board[1][1], "O")
-        TTT.makeMove(1,1)
+        TTT.executeTurn(1,1)
         assertEquals(TTT.board[1][1], "O")
     }
     @Test
     fun checkHorizontalWinner() {
         val TTTr1 = TTTengine()
-        TTTr1.makeMove(0,0)
-        TTTr1.makeMove(1,1)
-        TTTr1.makeMove(0,1)
-        TTTr1.makeMove(1,2)
-        TTTr1.makeMove(0,2)
+        TTTr1.executeTurn(0,0)
+        TTTr1.executeTurn(1,1)
+        TTTr1.executeTurn(0,1)
+        TTTr1.executeTurn(1,2)
+        TTTr1.executeTurn(0,2)
         assertEquals(TTTr1.winner, "X")
         assertEquals(TTTr1.gameOver, true)
     }
     @Test
     fun checkVerticalWinner() {
         val TTT = TTTengine()
-        TTT.makeMove(1,1)
-        TTT.makeMove(0,0)
-        TTT.makeMove(1,2)
-        TTT.makeMove(1,0)
-        TTT.makeMove(2,1)
-        TTT.makeMove(2,0)
+        TTT.executeTurn(1,1)
+        TTT.executeTurn(0,0)
+        TTT.executeTurn(1,2)
+        TTT.executeTurn(1,0)
+        TTT.executeTurn(2,1)
+        TTT.executeTurn(2,0)
         assertEquals(TTT.winner, "O")
         assertEquals(TTT.gameOver, true)
     }
     @Test
     fun checkDiagonalLRWinner() {
         val TTT = TTTengine()
-        TTT.makeMove(0,0)
-        TTT.makeMove(0,1)
-        TTT.makeMove(1,1)
-        TTT.makeMove(1,0)
-        TTT.makeMove(2,2)
+        TTT.executeTurn(0,0)
+        TTT.executeTurn(0,1)
+        TTT.executeTurn(1,1)
+        TTT.executeTurn(1,0)
+        TTT.executeTurn(2,2)
         assertEquals(TTT.winner, "X")
         assertEquals(TTT.gameOver, true)
     }
     @Test
     fun checkDiagonalRLWinner() {
         val TTT = TTTengine()
-        TTT.makeMove(0,2)
-        TTT.makeMove(0,1)
-        TTT.makeMove(1,1)
-        TTT.makeMove(1,0)
-        TTT.makeMove(2,0)
+        TTT.executeTurn(0,2)
+        TTT.executeTurn(0,1)
+        TTT.executeTurn(1,1)
+        TTT.executeTurn(1,0)
+        TTT.executeTurn(2,0)
         assertEquals(TTT.winner, "X")
         assertEquals(TTT.gameOver, true)
     }
     @Test
     fun checkDraw() {
         val TTT = TTTengine()
-        TTT.makeMove(0,0)
-        TTT.makeMove(1,1)
-        TTT.makeMove(0,1)
-        TTT.makeMove(0,2)
-        TTT.makeMove(2,0)
-        TTT.makeMove(1,0)
-        TTT.makeMove(1,2)
-        TTT.makeMove(2,2)
-        TTT.makeMove(2,1)
+        TTT.executeTurn(0,0)
+        TTT.executeTurn(1,1)
+        TTT.executeTurn(0,1)
+        TTT.executeTurn(0,2)
+        TTT.executeTurn(2,0)
+        TTT.executeTurn(1,0)
+        TTT.executeTurn(1,2)
+        TTT.executeTurn(2,2)
+        TTT.executeTurn(2,1)
         assertEquals("Draw", TTT.winner)
         assertEquals(TTT.gameOver, true)
     }

@@ -12,15 +12,14 @@ class UltimateBoard(val ultimateEngine : UltimateEngine) : GridPane() {
 
         for (i in 0..2) {
             for (j in 0..2) {
-            val board = TTTboard(TTTengine(), this)
-            board.boardRow = i
-            board.boardColumn = j
-            macroBoard.add(i*j, board)
-            window.add(board.window,j,i)
+                val board = TTTboard(TTTengine(), this)
+                board.boardRow = i
+                board.boardColumn = j
+                macroBoard.add(i*j, board)
+                window.add(board.window,j,i)
         }}
 
     }
-
     fun setState(row: Int, column: Int){
         for (board in macroBoard) {
             if (board.boardRow == row && board.boardColumn == column) {
@@ -41,5 +40,12 @@ class UltimateBoard(val ultimateEngine : UltimateEngine) : GridPane() {
             else
                 board.disable()
         }
+    }
+
+    fun endMacroGame() {
+        for (board in macroBoard){
+            board.disable()
+        }
+        println("Player ${ultimateEngine.winner} Wins!!!")
     }
 }
