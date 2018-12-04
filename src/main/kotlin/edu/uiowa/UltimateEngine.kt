@@ -9,6 +9,7 @@ class UltimateEngine {
     var gameOver = false
     var winner = "Nobody"
     var finishedBoards = 0
+    // I think I can remove this moves
     var moves = 0
 
 
@@ -23,19 +24,12 @@ class UltimateEngine {
         finishedBoards++
     }
 
-    fun checkForWinner() {
-        if (checkHorzWinner()){
-            return
-        }
-        if (checkVertWinner()) {
-            println("Vert Winner worked")
-            return
-        }
-        //Check Diagonal Winners
-        if (checkDiagonalWinner()){
-            println("Diag Winner worked")
-            return
-        }
+    fun checkForWinner() : Boolean {
+        if (checkHorzWinner()){ return true }
+        if (checkVertWinner()) { return true }
+        if (checkDiagonalWinner()){ return true }
+        if (checkForDraw()) { return true }
+        return false
     }
 
     fun checkForDraw() : Boolean {

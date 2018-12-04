@@ -31,6 +31,13 @@ class TTTboard(val engine : TTTengine, val ultimateBoard: UltimateBoard) : Pane(
         } }
     }
 
+    fun endMicroGame() {
+        ultimateBoard.ultimateEngine.setBoardWinner(this.boardRow, this.boardColumn, this.engine.winner)
+        if (this.engine.winner != "Draw")
+            this.playWinAnimation(this.engine.winningCombo[0], this.engine.winningCombo[2])
+        ultimateBoard.ultimateEngine.checkForWinner()
+    }
+
     fun disable(){
         for (square in window.children){
             square.isDisable = true
@@ -51,15 +58,6 @@ class TTTboard(val engine : TTTengine, val ultimateBoard: UltimateBoard) : Pane(
 
         }
     }
-
-    fun endMicroGame() {
-        ultimateBoard.ultimateEngine.setBoardWinner(this.boardRow, this.boardColumn, this.engine.winner)
-        if (this.engine.winner != "Draw")
-            this.playWinAnimation(this.engine.winningCombo[0], this.engine.winningCombo[2])
-        ultimateBoard.ultimateEngine.checkForWinner()
-        ultimateBoard.ultimateEngine.checkForDraw()
-    }
-
 
     fun playWinAnimation(start: Pair<Int, Int>, end: Pair<Int, Int>) {
         //Create a line and add it to the children on the window so it can be used

@@ -1,6 +1,8 @@
 # Project2820
 Ultimate Tic-Tac-Toe in Java FX
 
+How to Play: Run main in UltimateGameTTT.kt
+
 Current Status:
 
 I had a working single game tic tac toe (with unit tests for engine) and am now in the process of expanding it to ultimate tic tactoe.
@@ -10,9 +12,9 @@ unit tests. I do have the ultimate board displaying correctly and enabling and d
     
 To-Do List:
 
-    1. Write the ultimate engine 
+    1. Write the ultimate engine (done)
 
-    2. Add functionality for draws to ultimate engine and TTTengine
+    2. Add functionality for draws to ultimate engine and TTTengine (done)
     
     3. Write unit tests for the ultimate engine
     

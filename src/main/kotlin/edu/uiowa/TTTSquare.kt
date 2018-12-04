@@ -9,7 +9,7 @@ import javafx.scene.text.Text
 
 class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPane() {
     var textBox = Text()
-    //used for making moves in the engine
+    //row, col used for making moves in the engine
     var row: Int = 0
     var column: Int = 0
 
@@ -26,38 +26,40 @@ class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPa
 
     //What needs to happen from the views and engine perspective on clicks
     fun click() {
+        //On click make a move on the micro board and if it succeeds execute necessary functions else do nothing
         if (board.engine.executeTurn(row, column, ultimateBoard.ultimateEngine.currentPlayer)) {
-            if (ultimateBoard.ultimateEngine.currentPlayer == ultimateBoard.ultimateEngine.player1)
-                fillPlayer1()
-            else
-                fillPlayer2()
+            fillSquare()
+            updateGameState()
+            prepNextTurn()
+        }}
 
-            //Check if Draw
-            if (ultimateBoard.ultimateEngine.checkForDraw()) {
-                ultimateBoard.endMacroGame()
-            }
 
-            if (board.engine.gameOver) {
-                board.endMicroGame()
-            }
-            //Get Ready for Next Turn
+
+    private fun fillSquare(){
+        if (ultimateBoard.ultimateEngine.currentPlayer == ultimateBoard.ultimateEngine.player1){
+            textBox.fill = Color.GREEN
+            textBox.text = ultimateBoard.ultimateEngine.player1
+        }
+        else{
+            textBox.fill = Color.RED
+            textBox.text = ultimateBoard.ultimateEngine.player2
+        }
+    }
+
+    private fun updateGameState() {
+        if (board.engine.gameOver) {
+            board.endMicroGame()
+            //Micro board ended check macro board state
             if (ultimateBoard.ultimateEngine.gameOver) {
                 ultimateBoard.endMacroGame()
-            }
-            else{
-                ultimateBoard.ultimateEngine.changePlayer()
-                ultimateBoard.setState(row, column)
             }
         }
     }
 
-    fun fillPlayer1() {
-        textBox.fill = Color.GREEN
-        textBox.text = ultimateBoard.ultimateEngine.player1
+    private fun prepNextTurn() {
+        if (!ultimateBoard.ultimateEngine.gameOver) {
+            ultimateBoard.ultimateEngine.changePlayer()
+            ultimateBoard.setState(row, column)
+        }
     }
-    fun fillPlayer2(){
-        textBox.fill = Color.RED
-        textBox.text = ultimateBoard.ultimateEngine.player2
-    }
-
 }
