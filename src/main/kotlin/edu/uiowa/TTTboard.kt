@@ -35,7 +35,6 @@ class TTTboard(val engine : TTTengine, val ultimateBoard: UltimateBoard) : Pane(
         ultimateBoard.ultimateEngine.setBoardWinner(this.boardRow, this.boardColumn, this.engine.winner)
         if (this.engine.winner != "Draw")
             this.playWinAnimation(this.engine.winningCombo[0], this.engine.winningCombo[2])
-        ultimateBoard.ultimateEngine.checkForWinner()
     }
 
     fun disable(){

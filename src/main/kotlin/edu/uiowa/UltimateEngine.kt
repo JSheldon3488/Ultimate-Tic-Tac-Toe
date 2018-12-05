@@ -17,13 +17,16 @@ class UltimateEngine {
         currentPlayer = if (currentPlayer == player1) player2 else player1
         moves ++
     }
-    //This just sets the winner of a board into the ultimate array
-    //No need for check is empty because it only gets called on wins and then those board are disabled
+
+    //No need for protective programming here because this only gets called by boards that we assume were
+    //already initialized correctly
     fun setBoardWinner(row: Int, column: Int, winner: String){
         ultimateBoard[row][column] = winner
         finishedBoards++
+        checkForWinner()
     }
 
+    //Change to a when statement
     fun checkForWinner() : Boolean {
         if (checkHorzWinner()){ return true }
         if (checkVertWinner()) { return true }
@@ -43,7 +46,7 @@ class UltimateEngine {
 
     fun checkHorzWinner() : Boolean{
         for (row in 0..2) {
-            if (ultimateBoard[row][0] != "E") {
+            if (ultimateBoard[row][0] in "XO") {
                 if (ultimateBoard[row][0].equals(ultimateBoard[row][1]) && ultimateBoard[row][1].equals(ultimateBoard[row][2])) {
                     gameOver = true
                     winner = ultimateBoard[row][0]
@@ -57,7 +60,7 @@ class UltimateEngine {
     }
     fun checkVertWinner() : Boolean{
         for (column in 0..2) {
-            if (ultimateBoard[0][column] != "E") {
+            if (ultimateBoard[0][column] in "XO") {
                 if (ultimateBoard[0][column].equals(ultimateBoard[1][column]) && ultimateBoard[1][column].equals(ultimateBoard[2][column])) {
                     gameOver = true
                     winner = ultimateBoard[0][column]
@@ -70,7 +73,7 @@ class UltimateEngine {
         return false
     }
     fun checkDiagonalWinner() : Boolean{
-        if (ultimateBoard[0][0] != "E") {
+        if (ultimateBoard[0][0] in "XO") {
             if (ultimateBoard[0][0].equals(ultimateBoard[1][1]) && ultimateBoard[1][1].equals(ultimateBoard[2][2])) {
                 gameOver = true
                 winner = ultimateBoard[0][0]
@@ -80,7 +83,7 @@ class UltimateEngine {
                 winningCombo.add(Pair(2, 2))
                 return true
             } }
-        if (ultimateBoard[2][0] != "E") {
+        if (ultimateBoard[2][0] in "XO") {
             if (ultimateBoard[2][0].equals(ultimateBoard[1][1]) && ultimateBoard[1][1].equals(ultimateBoard[0][2])) {
                 gameOver = true
                 winner = ultimateBoard[2][0]

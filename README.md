@@ -5,9 +5,7 @@ How to Play: Run main in UltimateGameTTT.kt
 
 Current Status:
 
-I had a working single game tic tac toe (with unit tests for engine) and am now in the process of expanding it to ultimate tic tactoe.
-When I changed the structure to ultimate tic tac toe the engine changed and therefore I currently do not have a working engine with
-unit tests. I do have the ultimate board displaying correctly and enabling and disabling boards correctly. Below is my todo list.
+I am currently in the process of putting the final touches on everything. Below is my to-do list.
     
     
 To-Do List:
@@ -16,7 +14,7 @@ To-Do List:
 
     2. Add functionality for draws to ultimate engine and TTTengine (done)
     
-    3. Write unit tests for the ultimate engine
+    3. Write unit tests for the ultimate engine (done 100% Coverage)
     
     4. Rewrite unit tests for the individual TTTengine (board inside ultimate board)
     
