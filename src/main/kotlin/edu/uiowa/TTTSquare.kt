@@ -9,11 +9,12 @@ import javafx.scene.text.Text
 
 class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPane() {
     var textBox = Text()
+    //Squares value needed for hovering feature
+    var value = ""
     //row, col used for making moves in the engine
     var row: Int = 0
     var column: Int = 0
 
-    //Initialize Each Square
     init {
         val border = Rectangle(board.wide / 3.0, board.high / 3.0)
         border.fill = null
@@ -22,7 +23,25 @@ class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPa
         textBox.font = Font.font(board.wide / 6)
         children.addAll(border, textBox)
         setOnMouseClicked { click() }
+        setOnMouseEntered { hover() }
+        setOnMouseExited { clear() }
     }
+
+    fun hover() {
+        if (this.value == "") {
+            if (ultimateBoard.ultimateEngine.currentPlayer == ultimateBoard.ultimateEngine.player1) {
+                textBox.fill = Color.GREEN
+                textBox.text = ultimateBoard.ultimateEngine.player1
+            }
+            else {
+                textBox.fill = Color.RED
+                textBox.text = ultimateBoard.ultimateEngine.player2
+    } } }
+
+    fun clear() {
+        if (this.value == "") {
+            textBox.text = null
+    } }
 
     //What needs to happen from the views and engine perspective on clicks
     fun click() {
@@ -31,7 +50,7 @@ class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPa
             fillSquare()
             updateGameState()
             prepNextTurn()
-        }}
+    } }
 
 
 
@@ -39,12 +58,13 @@ class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPa
         if (ultimateBoard.ultimateEngine.currentPlayer == ultimateBoard.ultimateEngine.player1){
             textBox.fill = Color.GREEN
             textBox.text = ultimateBoard.ultimateEngine.player1
+            this.value = ultimateBoard.ultimateEngine.player1
         }
         else{
             textBox.fill = Color.RED
             textBox.text = ultimateBoard.ultimateEngine.player2
-        }
-    }
+            this.value = ultimateBoard.ultimateEngine.player2
+    } }
 
     private fun updateGameState() {
         if (board.engine.gameOver) {
@@ -52,14 +72,12 @@ class TTTSquare(val board: TTTboard, val ultimateBoard: UltimateBoard) : StackPa
             //Micro board ended check macro board state
             if (ultimateBoard.ultimateEngine.gameOver) {
                 ultimateBoard.endMacroGame()
-            }
-        }
-    }
+    } } }
 
     private fun prepNextTurn() {
         if (!ultimateBoard.ultimateEngine.gameOver) {
             ultimateBoard.ultimateEngine.changePlayer()
             ultimateBoard.setState(row, column)
-        }
-    }
+    } }
+
 }

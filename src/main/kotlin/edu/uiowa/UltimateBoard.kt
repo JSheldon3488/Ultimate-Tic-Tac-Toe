@@ -1,5 +1,6 @@
 package edu.uiowa
 
+import javafx.scene.control.Label
 import javafx.scene.layout.GridPane
 
 class UltimateBoard(val ultimateEngine : UltimateEngine) : GridPane() {

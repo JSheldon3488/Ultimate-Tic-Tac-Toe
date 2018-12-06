@@ -12,10 +12,8 @@ internal class UltimateEngineTest {
         assertEquals(testEngine.player1, testEngine.currentPlayer)
         testEngine.changePlayer()
         assertEquals(testEngine.player2, testEngine.currentPlayer)
-        assertEquals(1, testEngine.moves)
         testEngine.changePlayer()
         assertEquals(testEngine.player1, testEngine.currentPlayer)
-        assertEquals(2, testEngine.moves)
     }
 
     @Test

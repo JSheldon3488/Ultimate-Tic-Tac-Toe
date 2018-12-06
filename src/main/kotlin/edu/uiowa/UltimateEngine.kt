@@ -9,13 +9,9 @@ class UltimateEngine {
     var gameOver = false
     var winner = "Nobody"
     var finishedBoards = 0
-    // I think I can remove this moves
-    var moves = 0
-
 
     fun changePlayer() {
         currentPlayer = if (currentPlayer == player1) player2 else player1
-        moves ++
     }
 
     //No need for protective programming here because this only gets called by boards that we assume were
