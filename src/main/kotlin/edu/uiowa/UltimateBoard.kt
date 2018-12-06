@@ -1,9 +1,11 @@
 package edu.uiowa
 
-import javafx.scene.control.Label
+import javafx.animation.KeyFrame
+import javafx.animation.Timeline
 import javafx.scene.layout.GridPane
+import javafx.util.Duration
 
-class UltimateBoard(val ultimateEngine : UltimateEngine) : GridPane() {
+class UltimateBoard(val ultimateEngine : UltimateEngine, val mainMenu: MainMenu) : GridPane() {
     val window = GridPane()
     var macroBoard = arrayListOf<TTTboard>()
 
@@ -47,6 +49,20 @@ class UltimateBoard(val ultimateEngine : UltimateEngine) : GridPane() {
         for (board in macroBoard){
             board.disable()
         }
-        println("Player ${ultimateEngine.winner} Wins!!!")
+        val timeline = Timeline()
+        timeline.keyFrames.add(KeyFrame(Duration.seconds(2.0)))
+        timeline.setOnFinished { transitionGame() }
+        timeline.play()
+    }
+
+    fun transitionGame(){
+        mainMenu.hide()
+        if (ultimateEngine.winner != "Draw") {
+            MainMenu().textBox.text = "Player ${ultimateEngine.winner} Wins!!!"
+
+        }
+        else {
+            MainMenu().textBox.text = "Draw :("
+        }
     }
 }

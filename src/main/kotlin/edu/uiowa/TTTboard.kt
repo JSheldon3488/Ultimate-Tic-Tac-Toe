@@ -32,9 +32,10 @@ class TTTboard(val engine : TTTengine, val ultimateBoard: UltimateBoard) : Pane(
     }
 
     fun endMicroGame() {
-        ultimateBoard.ultimateEngine.setBoardWinner(this.boardRow, this.boardColumn, this.engine.winner)
-        if (this.engine.winner != "Draw")
+        if (this.engine.winner != "Draw") {
             this.playWinAnimation(this.engine.winningCombo[0], this.engine.winningCombo[2])
+        }
+        ultimateBoard.ultimateEngine.setBoardWinner(this.boardRow, this.boardColumn, this.engine.winner)
     }
 
     fun disable(){

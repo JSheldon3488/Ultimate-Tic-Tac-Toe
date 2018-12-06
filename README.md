@@ -20,7 +20,7 @@ To-Do List:
     
     5. Create an engine interface that my engines implement
     
-    6. Create Main Menu Sceen and End of Game Sceen (Needs to look better)
+    6. Create Main Menu Sceen and End of Game Sceen (done but not fancy menu)
     
     7. Refactor
     

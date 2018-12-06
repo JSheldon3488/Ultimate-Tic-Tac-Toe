@@ -8,7 +8,9 @@ import javafx.stage.Stage
 
 class UltimateTTTapp: Application() {
     override fun start(primaryStage: Stage) {
-        MainMenu()
+        //Main menu runs the stage. I did this becaus then I could create a new MainMenu when the games
+        // ended to start a new game and no stages left behind in background
+        UltimateBoard(UltimateEngine(),MainMenu())
     }
 }
 
