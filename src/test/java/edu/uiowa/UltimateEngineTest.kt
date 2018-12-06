@@ -117,4 +117,5 @@ internal class UltimateEngineTest {
         //Test fix on 3 draws in a row ending game early bug
         assertEquals(false, testEngine.gameOver)
     }
+
 }
