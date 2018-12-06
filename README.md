@@ -16,11 +16,11 @@ To-Do List:
     
     3. Write unit tests for the ultimate engine (done 100% Coverage)
     
-    4. Rewrite unit tests for the individual TTTengine (board inside ultimate board)
+    4. Rewrite unit tests for the individual TTTengine (done 100% Coverage)
     
-    5. Create an engine interface that my engines implement (and extend because subtle differences between the two)
+    5. Create an engine interface that my engines implement
     
-    6. Create Main Menu Sceen and End of Game Sceen
+    6. Create Main Menu Sceen and End of Game Sceen (Needs to look better)
     
     7. Refactor
     

@@ -8,8 +8,7 @@ import javafx.stage.Stage
 
 class UltimateTTTapp: Application() {
     override fun start(primaryStage: Stage) {
-        primaryStage.scene = Scene(UltimateBoard(UltimateEngine()).window)
-        primaryStage.show()
+        MainMenu()
     }
 }
 
