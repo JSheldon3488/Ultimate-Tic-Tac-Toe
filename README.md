@@ -18,11 +18,11 @@ To-Do List:
     
     4. Rewrite unit tests for the individual TTTengine (done 100% Coverage)
     
-    5. Create an engine interface that my engines implement
+    5. Create an engine interface that my engines implement (Done)
     
     6. Create Main Menu Sceen and End of Game Sceen (done but not fancy menu)
     
-    7. Refactor
+    7. Refactor (Done for Engines)
     
     8. Refactor
     

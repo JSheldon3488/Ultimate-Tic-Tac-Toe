@@ -1,38 +1,47 @@
 package edu.uiowa
 
-class UltimateEngine {
-    var ultimateBoard = Array<Array<String>>(3) { arrayOf<String>("E", "E", "E") }
-    var winningCombo = arrayListOf<Pair<Int,Int>>()
+class UltimateEngine : Engine {
+/* Properties */
+    // The purpose of these Properties is described in the interface
+    override var board = Array<Array<String>>(3) { arrayOf<String>("E", "E", "E") }
+    override var gameOver = false
+    override var winner = "Nobody"
+
+
+    //Variables specific to ultimate board to handle changing players
     val player1 = "X"
     val player2 = "O"
     var currentPlayer = player1
-    var gameOver = false
-    var winner = "Nobody"
-    var finishedBoards = 0
 
+
+/* Methods */
+    // Specific to the Ultimate Board because this is where we handle turns
     fun changePlayer() {
         currentPlayer = if (currentPlayer == player1) player2 else player1
     }
 
-    //No need for protective programming here because this only gets called by boards that we assume were
-    //already initialized correctly
-    fun setBoardWinner(row: Int, column: Int, winner: String){
-        ultimateBoard[row][column] = winner
-        finishedBoards++
+    // The overall purpose of the methods below are described in the interface
+
+    //No need for the checks in the ultimate board because it is only called on micro board wins
+    override fun executeTurn(row: Int, column: Int, player: String) : Boolean{
+        board[row][column] = player
         checkForWinner()
+        return true
     }
 
-    //Change to a when statement
-    fun checkForWinner() : Boolean {
-        if (checkHorzWinner()){ return true }
-        if (checkVertWinner()) { return true }
-        if (checkDiagonalWinner()){ return true }
-        if (checkForDraw()) { return true }
-        return false
+
+    override fun checkForWinner() : Boolean {
+        when {
+            checkHorzWinner() -> return true
+            checkVertWinner() -> return true
+            checkDiagonalWinner() -> return true
+            checkForDraw() -> return true
+            else -> return false
+        }
     }
 
-    fun checkForDraw() : Boolean {
-        if (finishedBoards == 9 && winner == "Nobody") {
+    override fun checkForDraw() : Boolean {
+        if (board.sumBy { inner : Array<String> -> inner.count { it == "E" } } == 0 && winner == "Nobody") {
             winner = "Draw"
             gameOver = true
             return true
@@ -40,53 +49,41 @@ class UltimateEngine {
         return false
     }
 
-    fun checkHorzWinner() : Boolean{
+
+
+    // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
+            //Each case check in "XO" instead of != "E" because ultimateboards can be "Draw"
+    private fun checkHorzWinner() : Boolean{
         for (row in 0..2) {
-            if (ultimateBoard[row][0] in "XO") {
-                if (ultimateBoard[row][0].equals(ultimateBoard[row][1]) && ultimateBoard[row][1].equals(ultimateBoard[row][2])) {
+            if (board[row][0] in "XO") {
+                if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])) {
                     gameOver = true
-                    winner = ultimateBoard[row][0]
-                    //Save winning combo for animation purposes
-                    winningCombo.add(Pair(row, 0))
-                    winningCombo.add(Pair(row, 1))
-                    winningCombo.add(Pair(row, 2))
+                    winner = board[row][0]
                     return true
                 } } }
         return false
     }
-    fun checkVertWinner() : Boolean{
+    private fun checkVertWinner() : Boolean{
         for (column in 0..2) {
-            if (ultimateBoard[0][column] in "XO") {
-                if (ultimateBoard[0][column].equals(ultimateBoard[1][column]) && ultimateBoard[1][column].equals(ultimateBoard[2][column])) {
+            if (board[0][column] in "XO") {
+                if (board[0][column].equals(board[1][column]) && board[1][column].equals(board[2][column])) {
                     gameOver = true
-                    winner = ultimateBoard[0][column]
-                    //Save winning combo for animation purposes
-                    winningCombo.add(Pair(0, column))
-                    winningCombo.add(Pair(1, column))
-                    winningCombo.add(Pair(2, column))
+                    winner = board[0][column]
                     return true
                 } } }
         return false
     }
-    fun checkDiagonalWinner() : Boolean{
-        if (ultimateBoard[0][0] in "XO") {
-            if (ultimateBoard[0][0].equals(ultimateBoard[1][1]) && ultimateBoard[1][1].equals(ultimateBoard[2][2])) {
+    private fun checkDiagonalWinner() : Boolean{
+        if (board[0][0] in "XO") {
+            if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
                 gameOver = true
-                winner = ultimateBoard[0][0]
-                //Save winning combo for animation purposes
-                winningCombo.add(Pair(0, 0))
-                winningCombo.add(Pair(1, 1))
-                winningCombo.add(Pair(2, 2))
+                winner = board[0][0]
                 return true
             } }
-        if (ultimateBoard[2][0] in "XO") {
-            if (ultimateBoard[2][0].equals(ultimateBoard[1][1]) && ultimateBoard[1][1].equals(ultimateBoard[0][2])) {
+        if (board[2][0] in "XO") {
+            if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])) {
                 gameOver = true
-                winner = ultimateBoard[2][0]
-                //Save winning combo for animation purposes
-                winningCombo.add(Pair(2, 0))
-                winningCombo.add(Pair(1, 1))
-                winningCombo.add(Pair(0, 2))
+                winner = board[2][0]
                 return true
             } }
         return false

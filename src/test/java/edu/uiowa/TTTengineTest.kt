@@ -12,7 +12,6 @@ internal class TTTengineTest {
         val testEngine = TTTengine()
         assertEquals(true,testEngine.executeTurn(0,0, "X"))
         assertEquals("X", testEngine.board[0][0])
-        assertEquals(1, testEngine.moves)
     }
 
     @Test
@@ -22,7 +21,6 @@ internal class TTTengineTest {
         assertEquals(false, testEngine.executeTurn(0,0,"O"))
         //Make sure nothing got updated on the board
         assertEquals("X", testEngine.board[0][0])
-        assertEquals(1, testEngine.moves)
     }
 
     @Test
@@ -49,7 +47,6 @@ internal class TTTengineTest {
         testEngine.executeTurn(2,2,"X")
         assertEquals(true, testEngine.gameOver)
         assertEquals("X", testEngine.winner)
-        assertEquals(3, testEngine.moves)
 
         val testEngine2 = TTTengine()
         testEngine2.executeTurn(0,2,"O")
@@ -57,7 +54,6 @@ internal class TTTengineTest {
         testEngine2.executeTurn(2,0,"O")
         assertEquals(true, testEngine2.gameOver)
         assertEquals("O", testEngine2.winner)
-        assertEquals(3, testEngine2.moves)
     }
 
     @Test
@@ -68,7 +64,6 @@ internal class TTTengineTest {
         testEngine.executeTurn(2,0,"O")
         assertEquals(true, testEngine.gameOver)
         assertEquals("O", testEngine.winner)
-        assertEquals(3, testEngine.moves)
     }
 
     @Test
@@ -79,7 +74,6 @@ internal class TTTengineTest {
         testEngine.executeTurn(0,2,"X")
         assertEquals(true, testEngine.gameOver)
         assertEquals("X", testEngine.winner)
-        assertEquals(3, testEngine.moves)
     }
 
 }
