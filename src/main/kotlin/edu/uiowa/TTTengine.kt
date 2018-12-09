@@ -1,7 +1,11 @@
 package edu.uiowa
 
-import com.sun.org.apache.xpath.internal.operations.Bool
 
+/*
+This is the "model" for each individual TTT game inside the larger ultimate TTT game. This class acts as sort of a game
+manager for the individual boards and essentially just handles the functionality of checking for winners and being able to
+save the state of winners in the game.
+ */
 class TTTengine : Engine {
 /* Properties */
     // The purpose off these methods is described in the interface
@@ -54,6 +58,7 @@ class TTTengine : Engine {
 
 
     // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
+    // Also these methods allow us to test each type of winning condition separately
     private fun checkDiagonalWinner() : Boolean {
         if (board[0][0] != "E") {
             if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
@@ -83,7 +88,6 @@ class TTTengine : Engine {
         }
         return false
     }
-
     private fun checkVertWinner(): Boolean {
         for (column in 0..2) {
             if (board[0][column] != "E") {
@@ -100,7 +104,6 @@ class TTTengine : Engine {
         } } }
         return false
     }
-
     private fun checkHorzWinner(): Boolean {
         for (row in 0..2) {
             if (board[row][0] != "E") {
@@ -117,4 +120,5 @@ class TTTengine : Engine {
         } } }
         return false
     }
+
 }

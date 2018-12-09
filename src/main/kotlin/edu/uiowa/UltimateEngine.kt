@@ -1,5 +1,11 @@
 package edu.uiowa
 
+
+/*
+This class acts as the "model" for the ultimate TTT game. This class supports functionality for checking for winners and
+saving the state of the game as well as functionality for changing players in the game. This is essentially a "game manager"
+for the unltimate TTT game.
+ */
 class UltimateEngine : Engine {
 /* Properties */
     // The purpose of these Properties is described in the interface
@@ -20,7 +26,7 @@ class UltimateEngine : Engine {
         currentPlayer = if (currentPlayer == player1) player2 else player1
     }
 
-    // The overall purpose of the methods below are described in the interface
+    // The overall purpose of the methods below are described in the interface.
 
     //No need for the checks in the ultimate board because it is only called on micro board wins
     override fun executeTurn(row: Int, column: Int, player: String) : Boolean{
@@ -52,6 +58,7 @@ class UltimateEngine : Engine {
 
 
     // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
+    // Also these methods allow us to test each type of winning condition separately
             //Each case check in "XO" instead of != "E" because ultimateboards can be "Draw"
     private fun checkHorzWinner() : Boolean{
         for (row in 0..2) {
@@ -88,4 +95,5 @@ class UltimateEngine : Engine {
             } }
         return false
     }
+
 }

@@ -1,5 +1,8 @@
 package edu.uiowa
 
+/*
+A general design for an engine to run a Tic-Tac-Toe game. Supports functionality for everything you need to run a TTT Game.
+ */
 interface Engine {
 /* Properties */
     // Used for storing the games current state and checking for winners
