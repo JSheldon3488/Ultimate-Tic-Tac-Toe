@@ -22,8 +22,4 @@ To-Do List:
     
     6. Create Main Menu Sceen and End of Game Sceen (done but not fancy menu)
     
-    7. Refactor (Done for Engines)
-    
-    8. Refactor
-    
-    9. Refactor
+    7. Refactor (Done for Engines, TTTboard)
