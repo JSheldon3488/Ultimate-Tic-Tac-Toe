@@ -39,7 +39,6 @@ class UltimateBoard(val ultimateEngine : UltimateEngine, val mainMenu: MainMenu)
 
 
 /* Methods */
-
     /*
     setState allows us to enable and disable the correct boards after each turn based on the rules of the game.
     row and column will be information from the individual squares location(in Square Class) in their individual boards.
@@ -94,10 +93,10 @@ class UltimateBoard(val ultimateEngine : UltimateEngine, val mainMenu: MainMenu)
         //mainMenu at this point is the ultimateBoard view
         mainMenu.hide()
         if (ultimateEngine.winner != "Draw") {
-            MainMenu().textBox.text = "Player ${ultimateEngine.winner} Wins!!!"
+            MainMenu().mainTextBox.text = "Player ${ultimateEngine.winner} Wins!!!"
         }
         else {
-            MainMenu().textBox.text = "Draw :("
+            MainMenu().mainTextBox.text = "Draw :("
         }
     }
 
