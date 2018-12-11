@@ -57,68 +57,68 @@ class TTTengine : Engine {
 
 
 
-    // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
-    // Also these methods allow us to test each type of winning condition separately
-    private fun checkDiagonalWinner() : Boolean {
-        if (board[0][0] != "E") {
-            if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
-                gameOver = true
-                winner = board[0][0]
+            // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
+            // Also these methods allow us to test each type of winning condition separately
+            private fun checkDiagonalWinner() : Boolean {
+                if (board[0][0] != "E") {
+                    if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
+                        gameOver = true
+                        winner = board[0][0]
 
-                //Save winning combo for animation purposes
-                winningCombo.add(Pair(0, 0))
-                winningCombo.add(Pair(1, 1))
-                winningCombo.add(Pair(2, 2))
+                        //Save winning combo for animation purposes
+                        winningCombo.add(Pair(0, 0))
+                        winningCombo.add(Pair(1, 1))
+                        winningCombo.add(Pair(2, 2))
 
-                return true
+                        return true
+                    }
+                }
+                if (board[2][0] != "E") {
+                    if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])) {
+                        gameOver = true
+                        winner = board[2][0]
+
+                        //Save winning combo for animation purposes
+                        winningCombo.add(Pair(2, 0))
+                        winningCombo.add(Pair(1, 1))
+                        winningCombo.add(Pair(0, 2))
+
+                        return true
+                    }
+                }
+                return false
             }
-        }
-        if (board[2][0] != "E") {
-            if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])) {
-                gameOver = true
-                winner = board[2][0]
+            private fun checkVertWinner(): Boolean {
+                for (column in 0..2) {
+                    if (board[0][column] != "E") {
+                        if (board[0][column].equals(board[1][column]) && board[1][column].equals(board[2][column])) {
+                            gameOver = true
+                            winner = board[0][column]
 
-                //Save winning combo for animation purposes
-                winningCombo.add(Pair(2, 0))
-                winningCombo.add(Pair(1, 1))
-                winningCombo.add(Pair(0, 2))
+                            //Save winning combo for animation purposes
+                            winningCombo.add(Pair(0, column))
+                            winningCombo.add(Pair(1, column))
+                            winningCombo.add(Pair(2, column))
 
-                return true
+                            return true
+                } } }
+                return false
             }
-        }
-        return false
-    }
-    private fun checkVertWinner(): Boolean {
-        for (column in 0..2) {
-            if (board[0][column] != "E") {
-                if (board[0][column].equals(board[1][column]) && board[1][column].equals(board[2][column])) {
-                    gameOver = true
-                    winner = board[0][column]
+            private fun checkHorzWinner(): Boolean {
+                for (row in 0..2) {
+                    if (board[row][0] != "E") {
+                        if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])) {
+                            gameOver = true
+                            winner = board[row][0]
 
-                    //Save winning combo for animation purposes
-                    winningCombo.add(Pair(0, column))
-                    winningCombo.add(Pair(1, column))
-                    winningCombo.add(Pair(2, column))
+                            //Save winning combo for animation purposes
+                            winningCombo.add(Pair(row, 0))
+                            winningCombo.add(Pair(row, 1))
+                            winningCombo.add(Pair(row, 2))
 
-                    return true
-        } } }
-        return false
-    }
-    private fun checkHorzWinner(): Boolean {
-        for (row in 0..2) {
-            if (board[row][0] != "E") {
-                if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])) {
-                    gameOver = true
-                    winner = board[row][0]
-
-                    //Save winning combo for animation purposes
-                    winningCombo.add(Pair(row, 0))
-                    winningCombo.add(Pair(row, 1))
-                    winningCombo.add(Pair(row, 2))
-
-                    return true
-        } } }
-        return false
-    }
+                            return true
+                } } }
+                return false
+            }
 
 }

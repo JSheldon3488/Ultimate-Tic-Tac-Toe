@@ -57,43 +57,43 @@ class UltimateEngine : Engine {
 
 
 
-    // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
-    // Also these methods allow us to test each type of winning condition separately
-            //Each case check in "XO" instead of != "E" because ultimateboards can be "Draw"
-    private fun checkHorzWinner() : Boolean{
-        for (row in 0..2) {
-            if (board[row][0] in "XO") {
-                if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])) {
-                    gameOver = true
-                    winner = board[row][0]
-                    return true
-                } } }
-        return false
-    }
-    private fun checkVertWinner() : Boolean{
-        for (column in 0..2) {
-            if (board[0][column] in "XO") {
-                if (board[0][column].equals(board[1][column]) && board[1][column].equals(board[2][column])) {
-                    gameOver = true
-                    winner = board[0][column]
-                    return true
-                } } }
-        return false
-    }
-    private fun checkDiagonalWinner() : Boolean{
-        if (board[0][0] in "XO") {
-            if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
-                gameOver = true
-                winner = board[0][0]
-                return true
-            } }
-        if (board[2][0] in "XO") {
-            if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])) {
-                gameOver = true
-                winner = board[2][0]
-                return true
-            } }
-        return false
-    }
+            // The ugly details of how to check for a winner in the array. Hid the complexity down here in the basement
+            // Also these methods allow us to test each type of winning condition separately
+                    //Each case check in "XO" instead of != "E" because ultimateboards can be "Draw"
+            private fun checkHorzWinner() : Boolean{
+                for (row in 0..2) {
+                    if (board[row][0] in "XO") {
+                        if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])) {
+                            gameOver = true
+                            winner = board[row][0]
+                            return true
+                        } } }
+                return false
+            }
+            private fun checkVertWinner() : Boolean{
+                for (column in 0..2) {
+                    if (board[0][column] in "XO") {
+                        if (board[0][column].equals(board[1][column]) && board[1][column].equals(board[2][column])) {
+                            gameOver = true
+                            winner = board[0][column]
+                            return true
+                        } } }
+                return false
+            }
+            private fun checkDiagonalWinner() : Boolean{
+                if (board[0][0] in "XO") {
+                    if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])) {
+                        gameOver = true
+                        winner = board[0][0]
+                        return true
+                    } }
+                if (board[2][0] in "XO") {
+                    if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])) {
+                        gameOver = true
+                        winner = board[2][0]
+                        return true
+                    } }
+                return false
+            }
 
 }

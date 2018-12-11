@@ -100,5 +100,5 @@ class UltimateBoard(val ultimateEngine : UltimateEngine, val mainMenu: MainMenu)
             MainMenu().textBox.text = "Draw :("
         }
     }
-    
+
 }
