@@ -9,10 +9,16 @@ import javafx.stage.Stage
 /*
 UltimateTTTapp is just the application launcher. All the real action is elsewhere
  */
-class UltimateTTTapp: Application() {
+abstract class UltimateTTTapp: Application() {
+    lateinit var stage: Stage
+
     override fun start(primaryStage: Stage) {
+        stage = primaryStage
+
         //MainMenu() Creates and runs the stages.
-        UltimateBoard(UltimateEngine(),MainMenu())
+        val game = Scene(UltimateBoard(UltimateEngine(),MainMenu()))
+        primaryStage.scene = game
+        //Still don't think I love this method
     }
 }
 
